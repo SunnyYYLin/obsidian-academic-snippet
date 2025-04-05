@@ -1,0 +1,298 @@
+/* -------------------------基础页面设置------------------------- */
+.cm-contentContainer {
+    max-width: 160mm;       /* 限制文本行宽 */
+    margin: 0 auto;         /* 内容居中显示 */
+}
+
+.markdown-preview-sizer {
+    max-width: 160mm;       /* 限制文本行宽 */
+    margin: 0 auto;         /* 内容居中显示 */
+}
+
+@page {
+    size: A4; /* 设置纸张为A4 */
+    margin-top: 2.5cm; /* 上边距 */
+    margin-bottom: 2.5cm; /* 下边距 */
+    margin-left: 3cm; /* 左边距 */
+    margin-right: 2cm; /* 右边距 */
+  }
+  
+body {
+    margin: 0; /* 确保内容不会超出@page定义的范围 */
+    padding: 0;
+}
+  
+/* 设置页眉和页脚距离 */
+@page {
+    margin-header: 1.5cm; /* 页眉距离 */
+    margin-footer: 1.5cm; /* 页脚距离 */
+}
+
+/* -------------------------字体规则------------------------- */
+/* 定义英文字体 */
+@font-face {
+    font-family: 'MyEnglishFont';
+    src: local('Times New Roman');
+    unicode-range: U+0000-00FF; /* 覆盖基本拉丁字符 */
+}
+  
+  /* 定义中文字体 */
+@font-face {
+    font-family: 'MyChineseFont';
+    src: local('SimHei');
+    unicode-range: U+4E00-9FFF; /* 覆盖常用汉字 */
+}
+
+:root {
+    --tnr: "Times New Roman";
+    --simsun: "SimSun", "宋体";
+    --simhei: "SimHei", "黑体";
+    --kaiti: "KaiTi", "楷体";
+    --code-font: "Consolas";
+}
+
+:root {
+    --line-height-base: 1.5em; /* 行间距 */
+    --margin-base: 1em; /* 段落间距 */
+}
+
+:root {
+    --font_size-largest: 16pt; /* 三号字体 */
+    --font_size-larger: 14pt; /* 四号字体 */
+    --font_size-large: 12pt; /* 小四号字体 */
+    --font-size-base: 10.5pt; /* 五号字体 */
+    --font-size-small: 9pt; /* 小五号字体 */
+    --font-size-smaller: 7.5pt; /* 六号字体 */
+}
+
+/* -------------------------强调------------------------- */
+strong:not(figcaption strong):not(th strong) {
+    font-family: var(--tnr), var(--simhei);
+    font-weight: 700;       /* 统一使用数值型字重 */
+}
+
+/* -------------------------段落规范------------------------- */
+/* 正文：中文为五号宋体，英文、数字为五号Times New Roman */
+p {
+    font-family: var(--tnr), var(--simsun);
+    font-size: var(--font-size-base);        /* 使用印刷单位 */
+    line-height: 1.5em;    /* 加大行间距 */
+}
+
+p:not(li p):not(div.cm-html-embed p) {
+    font-family: var(--tnr), var(--simsun);
+    font-size: var(--font-size-base);        /* 使用印刷单位 */
+    line-height: 1.5em;    /* 加大行间距 */
+    text-indent: 2em;   /* 首行缩进 */
+    orphans: 2;             /* 防止段落孤行 */
+    widows: 2;
+    margin: 1em 0; /* 段落间距 */
+    text-align: justify; /* 两端对齐 */
+}
+
+div.cm-line:not(.HyperMD-header):not(div.math + div ):not(.HyperMD-codeblock):not(.HyperMD-list-line):not(.HyperMD-footnote):not(:has(> br)) {
+    font-family: var(--tnr), var(--simsun);
+    font-size: var(--font-size-base);        /* 使用印刷单位 */
+    line-height: 1.5em;    /* 加大行间距 */
+    text-indent: 2em;
+    orphans: 2;             /* 防止段落孤行 */
+    widows: 2;
+    width: 100%; /* 100% 宽度 */
+}
+
+div.math + div.cm-line:not(.HyperMD-header) {
+    font-family: var(--tnr), var(--simsun);
+    font-size: var(--font-size-base);        /* 使用印刷单位 */
+    line-height: 1.5em;    /* 加大行间距 */
+    margin: 0.8em 0;        /* 使用相对单位 */
+    orphans: 2;             /* 防止段落孤行 */
+    widows: 2;
+    width: 100%; /* 100% 宽度 */
+}
+
+div.math {
+    font-family: var(--tnr), var(--simsun);
+    font-size: var(--font-size-base);        /* 使用印刷单位 */
+    line-height: 1.5em;    /* 加大行间距 */
+    margin: 0.8em 0;        /* 使用相对单位 */
+    orphans: 2;             /* 防止段落孤行 */
+    widows: 2;
+    width: 100%; /* 100% 宽度 */
+}
+
+/* -------------------------标题体系------------------------- */
+
+/* 论文标题	三号黑体	居中，文头顶空一行 */
+.markdown-rendered h1 {
+    font-family: var(--tnr), var(--simhei); /* 英文标题使用 Times New Roman，中文标题使用黑体 */
+    font-size: var(--font_size-largest);
+    font-weight: bold;       /* 加粗 */
+    text-align: center; /* 居中 */
+    margin-top: 1em; /* 前空三号空行一行 */
+    page-break-after: avoid; /* 防止分页断开 */
+    margin-top: var(--font-size-large) !important; /* 段前间距 */
+}
+
+div.HyperMD-header-1 {
+    font-family: var(--tnr), var(--simhei); /* 英文标题使用 Times New Roman，中文标题使用黑体 */
+    font-size: var(--font_size-largest);
+    font-weight: bold;       /* 加粗 */
+    margin-top: 1em; /* 前空三号空行一行 */
+    page-break-after: avoid; /* 防止分页断开 */
+    margin-top: var(--font-size-large) !important; /* 段前间距 */
+}
+
+/* 一级标题	四号黑体	顶格排，单占行	1 概述 */
+.markdown-rendered h2, div.HyperMD-header-2 {
+    font-size: var(--font_size-larger); /* 四号字体 */
+    font-family: var(--tnr), var(--simhei); /* 英文标题使用 Times New Roman，中文标题使用黑体 */
+    font-weight: bold; /* 加粗 */
+    text-indent: 0%; /* 顶格 */
+    margin-top: var(--font-size-large) !important; /* 段前间距 */
+    margin-bottom: var(--font-size-base) !important; /* 段后间距 */
+}
+
+/* 二级标题	小四号黑体	顶格排，单占行	1.1 仿真实现方法 */
+.markdown-rendered h3, div.HyperMD-header-3 {
+    font-size: var(--font-size-large); /* 小四号字体 */
+    font-family: var(--tnr), var(--simhei); /* 英文标题使用 Times New Roman，中文标题使用黑体 */
+    font-weight: bold; /* 加粗 */
+    text-indent: 0%; /* 顶格 */
+    margin-top: var(--font-size-base) !important; /* 段前间距 */
+    margin-bottom: var(--font-size-small) !important; /* 段后间距 */
+}
+
+/* 三级标题	五号黑体	顶格排，单占行	1.1.1 管网仿真实现方法 */
+.markdown-rendered h4, div.HyperMD-header-4 {
+    font-size: var(--font-size-base); /* 五号字体 */
+    font-family: var(--tnr), var(--simhei); /* 英文标题使用 Times New Roman，中文标题使用宋体 */
+    font-weight: bold; /* 加粗 */
+    text-indent: 0%; /* 顶格 */
+    margin-top: var(--font-size-small) !important; /* 段前间距 */
+    margin-bottom: var(--font-size-smaller) !important; /* 段后间距 */
+}
+
+/* 四级标题。 宋体五号加粗 */
+.markdown-rendered h5, div.HyperMD-header-5 {
+    font-size: var(--font_size-small); /* 五号字体 */
+    font-family: var(--tnr), var(--simsum); /* 英文标题使用 Times New Roman，中文标题使用黑体 */
+    font-weight: bold; /* 加粗 */
+    text-indent: 0%; /* 顶格 */
+    margin-top: var(--font-size-smaller) !important; /* 段前间距 */
+    margin-bottom: var(--font-size-smaller) !important; /* 段后间距 */
+}
+
+/* -------------------------列表缩进规范------------------------- */
+.markdown-rendered ul, .markdown-rendered ol {
+    font-family: var(--tnr), var(--simsun);
+    font-size: var(--font-size-base); /* 五号字体 */
+    padding-left: 2em; /* 列表缩进 */
+    margin: 0em 0; /* 段落间距 */
+    line-height: 1em; /* 行间距 */
+}
+
+.markdown-rendered li:not(section.footnotes ol li), div.HyperMD-list-line {
+    font-size: var(--font-size-base); /* 五号字体 */
+    margin: 0.4em 0;
+    line-height: 1.5em;
+}
+
+/* -------------------------表格------------------------- */
+/* 表、图与上下正文之间空一行，位置居中 */
+.markdown-rendered table, div.table-wrapper {
+    margin: 1em 0; /* 上下外边距 */
+    border-collapse: collapse ; /* 合并边框 */
+    width: 100% !important; /* 表格宽度自适应容器 */
+    /* 表格一般采用三线表 */
+    border-top: 2px solid black; /* 表格顶部粗线（顶线） */
+    border-bottom: 2px solid black; /* 表格底部粗线（底线） */
+}
+
+/* 表格一般采用三线表 */
+.markdown-rendered table thead tr, div.table-wrapper thead tr {
+    border-bottom: 1px solid black; /* 表头与数据分隔线（中间细线） */
+}
+
+/* 表名	五号黑体	排表上，居中，可在斜杠后接排计量单位，组合单位需加括号，英文同样	按流水排序，如：表1、表2 */
+.markdown-rendered table caption {
+    font-size: var(--font-size-base); /* 五号字体 */
+    font-family: var(--tnr), var(--simhei);
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+
+.markdown-rendered table th, table td {
+    font-size: var(--font-size-small) !important; /* 小五号字体 */
+    border: none !important; /* 禁用其他边框 */
+    text-align: center; /* 表头和数据默认居中 */
+}
+
+/* 表头用小5号黑体居中 */
+.markdown-rendered table tr th {
+    font-family: var(--tnr), var(--simhei); /* 表头使用黑体 */
+    font-size: var(--font-size-small); /* 小五号字体 */
+    text-align: center; /* 表头居中 */
+    vertical-align: middle; /* 表头垂直居中 */
+    background-color: #f5f5f5 !important; /* 可选：表头背景色（非必须） */
+}
+
+/* -------------------------图片------------------------- */
+/* 表、图与上下正文之间空一行，位置居中 */
+span.image-embed {
+    margin: 1em auto; /* 上下外边距 */
+    text-align: center; /* 图片居中 */
+    background-color: transparent !important; /* 图片背景透明 */
+}
+
+figure {
+    background-color: transparent !important; /* 图片背景透明 */
+}
+
+img {
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* 图名	五号黑体	排图下，居中，单占行，英文同样	图号按流水排序，如：图1，图2 */
+figcaption {
+    font-family: var(--tnr), var(--simhei);
+    font-size: var(--font-size-base); /* 五号 */
+    text-align: center !important;
+    margin-top: 0.5em !important; /* 上方间距 */
+    background-color: transparent !important;
+}
+
+/* -------------------------代码块学术规范------------------------- */
+pre, div.HyperMD-codeblock {
+    font-family: var(--code-font) !important;
+    font-size: var(--font-size-base) !important;
+    line-height: 1em !important;
+    margin: 1em 0;
+    white-space: pre-wrap;
+}
+
+div.HyperMD-codeblock span.cm-hmd-codeblock {
+    font-family: var(--code-font) !important;
+    font-size: var(--font-size-base) !important;
+    line-height: 1em !important;
+}
+
+/* -------------------------文献引用样式------------------------- */
+/* 参考文献：五号宋体，“参考文献” 4字为小四号黑体、加粗。参考文献顺序为外文在先，中文在后，外文按作者姓氏字母顺序排列，中文按作者姓氏汉语拼音字母顺序排列。 */
+section.footnotes hr:first-child {
+    display: none;
+}
+
+section.footnotes, div.HyperMD-footnote {
+    font-family: var(--tnr), var(--simsun);
+    font-size: var(--font-size-base); /* 五号字体 */
+    line-height: 1.5em; /* 行间距 */
+    padding-top: 0.4em; /* 段落间距 */
+}
+
+section.footnotes ol li {
+    line-height: 1.5em; /* 行间距 */
+    margin: 0.4em 0; /* 段落间距 */
+    padding-left: 0em; /* 列表缩进 */
+}
